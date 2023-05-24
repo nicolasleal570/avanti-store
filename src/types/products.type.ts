@@ -1,11 +1,11 @@
 export interface Product {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   handle: string;
   priceRange: PriceRange;
   featuredImage: ProductsFeaturedImage;
-  variants: ProductsVariants;
+  variants?: ProductsVariants;
 }
 
 export interface PriceRange {
@@ -26,11 +26,19 @@ export interface ProductsVariantsEdge {
 }
 
 export interface ProductsVariantsNode {
+  id?: string;
   title: string;
   price: ProductsVariantPrice;
+  selectedOptions?: ProductsVariantSelectedOption[];
+  image?: Pick<ProductsFeaturedImage, "url">;
 }
 
 export interface ProductsVariantPrice {
   amount: string;
   currencyCode: string;
+}
+
+export interface ProductsVariantSelectedOption {
+  name: string;
+  value: string;
 }

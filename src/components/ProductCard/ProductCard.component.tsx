@@ -8,7 +8,8 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const price = `${product.priceRange.minVariantPrice.currencyCode} ${product.priceRange.minVariantPrice.amount}`;
+  const { currencyCode, amount } = product.priceRange.minVariantPrice;
+  const price = `${currencyCode} ${amount}`;
 
   const productUrl = `/products/${product.handle}`;
 

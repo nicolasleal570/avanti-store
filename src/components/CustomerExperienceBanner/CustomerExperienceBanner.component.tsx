@@ -40,7 +40,7 @@ export function CustomerExperienceBanner() {
           We provide best <br /> customer experiences
         </h2>
 
-        <p className="text-gray-400 md:ml-7 text-center md:text-left mt-6">
+        <p className="text-gray-400 md:ml-7 text-center md:text-left mt-6 md:mt-0">
           We ensure our customer have the best shopping experience
         </p>
       </div>

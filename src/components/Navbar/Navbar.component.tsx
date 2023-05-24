@@ -7,6 +7,7 @@ import {
   UserIcon,
 } from "@heroicons/react/24/outline";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import Link from "next/link";
 
 export function NavbarSm() {
   return (
@@ -32,7 +33,7 @@ export function NavbarLg() {
   return (
     <div className="bg-black py-5">
       <nav className="flex items-center justify-between container">
-        <div className="w-[150px]">
+        <Link href="/" className="block w-[150px]">
           <Image
             width={150}
             height={150}
@@ -40,7 +41,7 @@ export function NavbarLg() {
             alt="Avanti Store"
             className="w-full"
           />
-        </div>
+        </Link>
 
         <ul className="flex items-center space-x-3 text-white">
           <li>Item 1</li>

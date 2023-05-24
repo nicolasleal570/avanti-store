@@ -7,7 +7,6 @@ export const getProductsQuery = (limit: number) => gql`
         node {
           id
           title
-          description
           handle
           priceRange {
             minVariantPrice {
@@ -19,17 +18,6 @@ export const getProductsQuery = (limit: number) => gql`
             id
             url
           }
-          variants(first: 20) {
-            edges {
-              node {
-                title
-                price {
-                  amount
-                  currencyCode
-                }
-              }
-            }
-          }
         }
       }
     }
@@ -37,5 +25,40 @@ export const getProductsQuery = (limit: number) => gql`
 `;
 
 export const getProductByHandleQuery = (handle: string) => gql`
-
+  {
+    product(handle: "${handle}") {
+      id
+      title
+      description
+      featuredImage {
+        id
+        url
+      }
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      variants(first: 10) {
+        edges {
+          node {
+            id
+            title
+            price {
+              amount
+              currencyCode
+            }
+            selectedOptions {
+              name
+              value
+            }
+            image {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
 `;

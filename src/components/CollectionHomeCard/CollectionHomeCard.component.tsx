@@ -9,12 +9,10 @@ interface CollectionHomeCardProps {
 
 export function CollectionHomeCard({ collection }: CollectionHomeCardProps) {
   return (
-    <div
-      className="h-full rounded relative overflow-hidden flex items-center"
-    >
+    <div className="h-full rounded relative overflow-hidden flex items-center">
       <Image
         fill
-        alt="Mountains"
+        alt={collection.title}
         className="object-cover z-0"
         src={collection.image.url}
       />

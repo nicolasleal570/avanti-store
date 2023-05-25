@@ -38,6 +38,26 @@ export const getProductsQuery = (
     }}
 `;
 
+export const getRecommendedProductsQuery = (productId: string) => gql`
+  {
+    productRecommendations(productId: "${productId}") {
+      id
+      title
+      handle
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      featuredImage {
+        id
+        url
+      }
+    }
+  }
+`;
+
 export const getProductByHandleQuery = (handle: string) => gql`
   {
     product(handle: "${handle}") {

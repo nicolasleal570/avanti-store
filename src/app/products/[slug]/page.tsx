@@ -1,6 +1,9 @@
 import { ProductDetail } from "@/components/ProductDetail/ProductDetail";
 import { ProductsSection } from "@/components/ProductsSection/ProductsSection.component";
-import { getProductByHandle, getProducts } from "@/services/products.service";
+import {
+  getProductByHandle,
+  getRecommendedProducts,
+} from "@/services/products.service";
 
 interface PageProps {
   params: {
@@ -11,14 +14,15 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const slug = params.slug as string;
   const { product } = await getProductByHandle(slug);
-  const { products: recommendedProducts } = await getProducts(6);
+  const { productRecommendations } = await getRecommendedProducts(product.id);
 
   return (
     <>
       <ProductDetail product={product} />
       <ProductsSection
         title="Recommended products"
-        products={recommendedProducts.edges.map((item) => item.node)}
+        description="These recommendations are based on the product selected"
+        products={productRecommendations}
       />
     </>
   );

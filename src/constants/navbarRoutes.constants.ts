@@ -1,3 +1,7 @@
+/**
+ * Navbar Routes
+ * @description This is an array of common routes between mobile and desktop navbar
+ */
 export const navbarRoutes = [
   {
     id: 1,

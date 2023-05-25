@@ -4,6 +4,11 @@ import { PageInfo } from "@/types/common.types";
 import { Product } from "@/types/products.type";
 import { getProducts } from "@/services/products.service";
 
+/**
+ * useProducts
+ * @description This hook is used to handle the search product logic
+ * @returns
+ */
 export function useProducts() {
   const router = useRouter();
   const pathname = usePathname();

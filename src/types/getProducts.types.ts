@@ -1,14 +1,15 @@
-import { Product } from "./products.type"
+import { PageInfo } from "./common.types";
+import { Product } from "./products.type";
 
 export interface GetProducts {
-  products: ProductsList
+  products: ProductsList;
 }
 
 export interface ProductsList {
-  edges: ProductsEdge[]
+  pageInfo: PageInfo;
+  edges: ProductsEdge[];
 }
 
 export interface ProductsEdge {
-  node: Product
+  node: Product;
 }
-

@@ -1,6 +1,10 @@
 import { gql } from "graphql-request";
 
-export const getCollectionByHandleQuery = (handle: string) => gql`
+export const getCollectionByHandleQuery = (
+  handle: string,
+  after?: string,
+  before?: string
+) => gql`
   {
     collection(handle: "${handle}") {
       id
@@ -9,6 +13,33 @@ export const getCollectionByHandleQuery = (handle: string) => gql`
       description
       image {
         url
+      }
+      products(${before ? `last: 5, before:"${before}"` : "first: 5"} ${
+  after ? `, after:"${after}"` : ""
+}) {
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+        }
+        edges {
+          node {
+            id
+            title
+            handle
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            featuredImage {
+              id
+              url
+            }
+          }
+        }
       }
     }
   }

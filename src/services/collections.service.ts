@@ -7,9 +7,13 @@ import { Collection } from "@/types/collections.type";
 import { GetCollections } from "@/types/getCollections.types";
 
 export async function getCollectionByHandle(
-  handle: string
+  handle: string,
+  after?: string,
+  before?: string
 ): Promise<Collection> {
-  const res = (await graphqlRequest(getCollectionByHandleQuery(handle))) as {
+  const res = (await graphqlRequest(
+    getCollectionByHandleQuery(handle, after, before)
+  )) as {
     collection: Collection;
   };
   return res.collection;

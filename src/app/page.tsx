@@ -22,6 +22,7 @@ export default async function Page() {
       <ProductsSection
         title="Featured products"
         products={products.edges.map((item) => item.node)}
+        sectionId="featuredProducts"
       />
     </main>
   );

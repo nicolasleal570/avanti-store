@@ -45,7 +45,10 @@ export function CustomerExperienceBanner() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-10 md:mt-20 px-8 md:px-0">
+      <div
+        id="listOfServices"
+        className="grid grid-cols-1 md:grid-cols-4 gap-10 mt-10 md:mt-20 px-8 md:px-0"
+      >
         {items.map((card) => (
           <div className="flex flex-col" key={card.id}>
             <div className="bg-gray-200 bg-opacity-50 p-4 flex items-center justify-center self-start rounded-md mb-4">

@@ -42,15 +42,15 @@ export function NavbarLg({ collections }: NavbarLgProps) {
         </ul>
 
         <div className="grid grid-cols-3 gap-2">
-          <Link href="/search" className="p-1 rounded">
+          <Link id="searchLink" href="/search" className="p-1 rounded">
             <MagnifyingGlassIcon className="w-5 h-5 text-white" />
           </Link>
 
-          <button type="button" className="p-1 rounded">
+          <button id="bagLink" type="button" className="p-1 rounded">
             <ShoppingBagIcon className="w-5 h-5 text-white" />
           </button>
 
-          <button type="button" className="p-1 rounded">
+          <button id="userLink" type="button" className="p-1 rounded">
             <UserIcon className="w-5 h-5 text-white" />
           </button>
         </div>

@@ -40,6 +40,7 @@ export function Pagination({
       <ChangePageButton
         type="button"
         text="Previous page"
+        id="previousPageButton"
         onClick={handlePrevPage}
         disabled={disabledPrevButton}
       />
@@ -47,6 +48,7 @@ export function Pagination({
       <ChangePageButton
         type="button"
         text="Next page"
+        id="nextPageButton"
         onClick={handleNextPage}
         disabled={disabledNextButton}
       />

@@ -1,58 +1,28 @@
 "use client";
 
 import { ChangeEventHandler, useEffect, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ProductList } from "@/components/ProductList/ProductList.component";
-import { getProducts } from "@/services/products.service";
-import { PageInfo } from "@/types/common.types";
-import { Product } from "@/types/products.type";
+import { useSearchParams } from "next/navigation";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useProducts } from "@/hooks/useProducts";
+import { ProductList } from "@/components/ProductList/ProductList.component";
 
 export default function Page() {
-  const router = useRouter();
-  const pathname = usePathname();
   const queryParams = useSearchParams();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, handleSearchProduct, products, pageInfo } = useProducts();
+
   const [searchQuery, setSearchQuery] = useState(
     queryParams.get("query") ?? ""
   );
-  const [products, setProducts] = useState<Product[]>([]);
-  const [pageInfo, setPageInfo] = useState<PageInfo | undefined>();
 
   const searchValue = useDebounce<string>(searchQuery);
-
-  const handleProductsFetch = async (query?: string) => {
-    if (isLoading) return;
-
-    try {
-      setIsLoading(true);
-
-      const url = `${pathname}${query ? `?query=${query}` : ""}`;
-      router.push(url);
-
-      const { products: productsData } = await getProducts(
-        5,
-        undefined,
-        undefined,
-        query
-      );
-
-      setProducts(productsData.edges.map(({ node }) => node));
-      setPageInfo(productsData.pageInfo);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleOnTextChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchQuery(event.target.value);
   };
 
   useEffect(() => {
-    handleProductsFetch(searchValue);
+    handleSearchProduct(searchValue);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 

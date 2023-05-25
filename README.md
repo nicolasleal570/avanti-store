@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Avanti Store
+Technical test conducted for the purpose of applying for the position of **Senior Frontend Developer** at [Galería Avanti](http://www.galeriaavanti.com/en/).
 
-## Getting Started
+It was developed mainly using **Next.js 13** with **Typescript** and consisted of creating an e-commerce application using the Shopify API [https://mock.shop/](https://mock.shop/). This is a GraphQL API so I made use of [graphql-request](https://www.npmjs.com/package/graphql-request) to do all the requests.
 
-First, run the development server:
+The project demo is available at [https://glistening-sunburst-fb3c17.netlify.app/](https://glistening-sunburst-fb3c17.netlify.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Application modules
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Landing page
+- Product detail page
+- Products Search page (Paginated)
+- Products list by collections (Paginated)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Unit tests** were performed on the most important components that affected the main flow of the application.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Start the project in development mode
 
-## Learn More
+    git clone https://github.com/nicolasleal570/avanti-store
+    cd avanti-store
+    yarn install
+    yarn dev
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

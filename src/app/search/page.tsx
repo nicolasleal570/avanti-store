@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEventHandler, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ProductList } from "@/components/ProductList/ProductList.component";
 import { getProducts } from "@/services/products.service";
 import { PageInfo } from "@/types/common.types";
@@ -8,8 +9,14 @@ import { Product } from "@/types/products.type";
 import { useDebounce } from "@/hooks/useDebounce";
 
 export default function Page() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const queryParams = useSearchParams();
+
   const [isLoading, setIsLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(
+    queryParams.get("query") ?? ""
+  );
   const [products, setProducts] = useState<Product[]>([]);
   const [pageInfo, setPageInfo] = useState<PageInfo | undefined>();
 
@@ -20,6 +27,9 @@ export default function Page() {
 
     try {
       setIsLoading(true);
+
+      const url = `${pathname}${query ? `?query=${query}` : ""}`;
+      router.push(url);
 
       const { products: productsData } = await getProducts(
         5,
@@ -42,14 +52,7 @@ export default function Page() {
   };
 
   useEffect(() => {
-    handleProductsFetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (searchValue) {
-      handleProductsFetch(searchValue);
-    }
+    handleProductsFetch(searchValue);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
@@ -64,6 +67,7 @@ export default function Page() {
             name="query"
             className="bg-white w-72 border border-gray-300 min-h-9 px-3 py-2"
             placeholder="Search..."
+            value={searchQuery}
             onChange={handleOnTextChange}
           />
         </div>

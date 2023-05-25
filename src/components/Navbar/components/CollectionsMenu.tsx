@@ -12,7 +12,7 @@ export function CollectionsMenu({ collections }: CollectionsMenuProps) {
   return (
     <Popover as="div" className="relative inline-block text-left">
       <div>
-        <Popover.Button className="inline-flex w-full justify-center items-center text-lg">
+        <Popover.Button className="inline-flex w-full justify-center items-center text-lg outline-none">
           Collections
           <ChevronDownIcon
             className="ml-2 -mr-1 h-5 w-5 text-inherit"

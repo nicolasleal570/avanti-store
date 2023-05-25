@@ -1,8 +1,23 @@
 import { gql } from "graphql-request";
 
-export const getProductsQuery = (limit: number) => gql`
+export const getProductsQuery = (
+  limit: number,
+  after?: string,
+  before?: string,
+  query?: string
+) => gql`
   {
-    products(first: ${limit}) {
+    products(
+      ${query ? `query: "title:${query}*"` : ""},
+      ${before ? `last: ${limit}, before: "${before}"` : `first: ${limit}`},
+      ${after ? `after: "${after}"` : ""}
+    ) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
       edges {
         node {
           id
@@ -20,8 +35,7 @@ export const getProductsQuery = (limit: number) => gql`
           }
         }
       }
-    }
-  }
+    }}
 `;
 
 export const getProductByHandleQuery = (handle: string) => gql`

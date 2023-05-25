@@ -5,11 +5,12 @@ import { PageInfo } from "@/types/common.types";
 import { Product } from "@/types/products.type";
 import { useState } from "react";
 import { Pagination } from "../Pagination/Pagination";
+import { getProducts } from "@/services/products.service";
 
 interface ProductListProps {
   products: Product[];
-  pageInfo: PageInfo;
-  collectionHandle: string;
+  pageInfo?: PageInfo;
+  collectionHandle?: string;
 }
 
 export function ProductList({
@@ -17,15 +18,31 @@ export function ProductList({
   pageInfo: initialPageInfo,
   collectionHandle,
 }: ProductListProps) {
-  const [pageInfo, setPageInfo] = useState<PageInfo>({ ...initialPageInfo });
+  const [isLoading, setIsLoading] = useState(false);
+  const [pageInfo, setPageInfo] = useState<PageInfo | undefined>(
+    initialPageInfo
+  );
   const [products, setProducts] = useState<Product[]>([...initialProducts]);
 
   const handleNextPage = async () => {
-    if (!pageInfo.hasNextPage) return;
+    if (!pageInfo?.hasNextPage || isLoading) return;
+
+    setIsLoading(true);
 
     try {
-      const { products: productsData } = await getCollectionByHandle(
-        collectionHandle,
+      if (collectionHandle) {
+        const { products: productsData } = await getCollectionByHandle(
+          collectionHandle,
+          pageInfo.endCursor
+        );
+
+        setPageInfo(productsData.pageInfo);
+        setProducts(productsData.edges.map(({ node }) => node));
+        return;
+      }
+
+      const { products: productsData } = await getProducts(
+        5,
         pageInfo.endCursor
       );
 
@@ -33,15 +50,31 @@ export function ProductList({
       setProducts(productsData.edges.map(({ node }) => node));
     } catch (error) {
       console.error({ error });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handlePrevPage = async () => {
-    if (!pageInfo.hasPreviousPage) return;
+    if (!pageInfo?.hasPreviousPage || isLoading) return;
+
+    setIsLoading(true);
 
     try {
-      const { products: productsData } = await getCollectionByHandle(
-        collectionHandle,
+      if (collectionHandle) {
+        const { products: productsData } = await getCollectionByHandle(
+          collectionHandle,
+          undefined,
+          pageInfo.startCursor
+        );
+
+        setPageInfo(productsData.pageInfo);
+        setProducts(productsData.edges.map(({ node }) => node));
+        return;
+      }
+
+      const { products: productsData } = await getProducts(
+        5,
         undefined,
         pageInfo.startCursor
       );
@@ -50,6 +83,8 @@ export function ProductList({
       setProducts(productsData.edges.map(({ node }) => node));
     } catch (error) {
       console.error({ error });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -61,14 +96,16 @@ export function ProductList({
         ))}
       </div>
 
-      <div className="mt-8">
-        <Pagination
-          handlePrevPage={handlePrevPage}
-          handleNextPage={handleNextPage}
-          disabledPrevButton={!pageInfo.hasPreviousPage}
-          disabledNextButton={!pageInfo.hasNextPage}
-        />
-      </div>
+      {pageInfo && (
+        <div className="mt-8">
+          <Pagination
+            handlePrevPage={handlePrevPage}
+            handleNextPage={handleNextPage}
+            disabledPrevButton={!pageInfo.hasPreviousPage}
+            disabledNextButton={!pageInfo.hasNextPage}
+          />
+        </div>
+      )}
     </div>
   );
 }

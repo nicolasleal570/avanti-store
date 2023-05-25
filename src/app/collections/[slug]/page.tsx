@@ -13,9 +13,9 @@ export default async function Page({ params }: PageProps) {
   );
 
   return (
-    <div className="container py-10">
+    <div className="container px-4 sm:px-0 py-10">
       <h1
-        className={`text-7xl font-bold text-gray-900 ${
+        className={`text-5xl md:text-7xl font-bold text-gray-900 ${
           !description ? "mb-14" : ""
         }`}
       >{`${title} Collection`}</h1>

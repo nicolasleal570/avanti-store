@@ -3,11 +3,13 @@
 import { useCallback, useEffect, useState } from "react";
 
 export function useMediaQuery(query: string) {
+  const [isClient, setIsClient] = useState(false);
+
   const getMatches = useCallback(() => {
-    if (window) {
+    if (isClient) {
       return window.matchMedia(query).matches;
     }
-  }, [query]);
+  }, [isClient, query]);
 
   const [matches, setMatches] = useState(getMatches());
 
@@ -16,7 +18,7 @@ export function useMediaQuery(query: string) {
   }, [getMatches]);
 
   useEffect(() => {
-    if (!window) return;
+    if (!isClient) return;
 
     const matchMedia = window.matchMedia(query);
 
@@ -27,7 +29,11 @@ export function useMediaQuery(query: string) {
     return () => {
       matchMedia.removeEventListener("change", handleChange);
     };
-  }, [query, handleChange]);
+  }, [handleChange, isClient, query]);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return matches;
 }

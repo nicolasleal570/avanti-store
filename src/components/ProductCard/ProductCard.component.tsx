@@ -17,7 +17,7 @@ export function ProductCard({ product }: ProductCardProps) {
     <div className="">
       <Link
         href={productUrl}
-        className="h-96 rounded relative overflow-hidden flex items-center"
+        className="h-96 rounded relative overflow-hidden flex items-center bg-gray-100"
       >
         <Image
           fill

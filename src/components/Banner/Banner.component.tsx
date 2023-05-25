@@ -12,17 +12,17 @@ export function Banner({ collections }: BannerProps) {
     collections;
 
   return (
-    <div className="bg-white md:py-12 p-4 md:px-0">
+    <div className="bg-bg-gray-100 md:py-12 p-4 md:px-0">
       <div className="container grid grid-cols-1 md:grid-cols-4 gap-4 min-h-[300px]">
         <div className="md:col-span-2 md:row-span-2 h-[200px] md:h-full">
           <CollectionHomeCard collection={largeCollection} />
         </div>
 
-        <div className="bg-purple-400 rounded h-[200px]">
+        <div className="bg-bg-gray-100 rounded h-[200px]">
           <CollectionHomeCard collection={smallFirstCollection} />
         </div>
 
-        <div className="bg-purple-400 rounded h-[200px]">
+        <div className="bg-bg-gray-100 rounded h-[200px]">
           <CollectionHomeCard collection={smallSecondCollection} />
         </div>
 

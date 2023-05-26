@@ -24,11 +24,13 @@ export default async function Page({ params }: PageProps) {
         <p className="text-gray-400 text-xl mb-14 ">{description}</p>
       )}
 
-      <ProductList
-        pageInfo={products.pageInfo}
-        collectionHandle={params.slug}
-        products={products.edges.map(({ node }) => node)}
-      />
+      {products && (
+        <ProductList
+          pageInfo={products.pageInfo}
+          collectionHandle={params.slug}
+          products={products.edges.map(({ node }) => node)}
+        />
+      )}
     </div>
   );
 }

@@ -22,6 +22,7 @@ export default async function Page({ params }: PageProps) {
       <ProductsSection
         title="Recommended products"
         description="These recommendations are based on the product selected"
+        sectionId="recommendedProducts"
         products={productRecommendations}
       />
     </>

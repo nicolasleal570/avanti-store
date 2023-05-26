@@ -4,7 +4,7 @@ Technical test for the purpose of applying for the position of **Senior Frontend
 
 It was developed using [Next.js](https://nextjs.org/) 13 with [Typescript](https://www.typescriptlang.org/) and consisted of creating an e-commerce application using the Shopify API [https://mock.shop/](https://mock.shop/). This is a GraphQL API so I made use of [graphql-request](https://www.npmjs.com/package/graphql-request) to do all the requests.
 
-Also, I used [TailwindCSS](https://tailwindcss.com/) to beautify the application.
+The design is 100% made and thought by me, I used [TailwindCSS](https://tailwindcss.com/) to mock up the application.
 
 The project demo is available at [https://avanti-store-murex.vercel.app/](https://avanti-store-murex.vercel.app/)
 

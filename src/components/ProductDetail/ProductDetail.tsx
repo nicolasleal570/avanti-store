@@ -20,15 +20,26 @@ export function ProductDetail({ product }: ProductDetailProps) {
           alt={selectedVariant?.title ?? product.title}
           className="object-cover z-0"
           src={selectedVariant?.image?.url ?? product.featuredImage.url}
+          data-cy="productImage"
         />
       </div>
       <div className="md:col-span-2 pt-10 flex flex-col">
-        <h1 className="text-7xl font-bold text-black">{product.title}</h1>
-        <p className="text-gray-800 text-3xl font-bold my-5">{price}</p>
-        <p className="text-gray-400 my-5">{product.description}</p>
+        <h1 data-cy="productTitle" className="text-7xl font-bold text-black">
+          {product.title}
+        </h1>
+        <p
+          data-cy="productPrice"
+          className="text-gray-800 text-3xl font-bold my-5"
+        >
+          {price}
+        </p>
+        <p data-cy="productDescription" className="text-gray-400 my-5">
+          {product.description}
+        </p>
         <Link
           href="/"
           className="block bg-black text-white w-full py-4 text-center mt-auto"
+          data-cy="addToCartButton"
         >
           Add to cart
         </Link>

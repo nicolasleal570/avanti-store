@@ -21,6 +21,7 @@ I used [Cypress](https://www.cypress.io/) to implement some unit and end-to-end 
 
 - Search page
 - Landing page
+- Product detail page
 - Navbar component
 - Collections menu components
 

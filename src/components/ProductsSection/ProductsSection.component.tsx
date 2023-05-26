@@ -17,6 +17,7 @@ export function ProductsSection({
   return (
     <div className="container my-20 px-4 md:px-0">
       <h2
+        data-cy={title}
         className={`flex-1 text-gray-800 font-bold text-3xl text-center md:text-left ${
           !description ? "mb-10" : ""
         }`}
@@ -24,9 +25,13 @@ export function ProductsSection({
         {title}
       </h2>
 
-      {description && <p className="text-gray-400 mt-2 mb-10">{description}</p>}
+      {description && (
+        <p data-cy={description} className="text-gray-400 mt-2 mb-10">
+          {description}
+        </p>
+      )}
 
-      <div id={sectionId} className={`grid grid-cols-1 md:grid-cols-3 gap-10`}>
+      <div data-cy={sectionId} id={sectionId} className={`grid grid-cols-1 md:grid-cols-3 gap-10`}>
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

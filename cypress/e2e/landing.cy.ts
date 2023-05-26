@@ -1,8 +1,12 @@
 describe("Landing page", () => {
-  it("Should render all sections correctly", () => {
+  beforeEach(() => {
+    cy.viewport("macbook-16");
+
     // Visit the Homepage
     cy.visit("/");
+  });
 
+  it("Should render all sections correctly", () => {
     // Check if banner is defined
     cy.get("span.sr-only").contains("Men");
     cy.get("span.sr-only").contains("Women");
@@ -26,4 +30,20 @@ describe("Landing page", () => {
     cy.get("h2").contains("Featured products");
     cy.get("#featuredProducts").children().should("have.length", 3);
   });
+
+  it("Should select a collection and navigate to the detail", () => {
+    cy.get("[data-cy='Unisex']")
+      .contains("Unisex")
+      .should("have.attr", "href", "/collections/unisex")
+      .click();
+
+    cy.get("[data-cy='unisex']").contains("Unisex Collection");
+
+    cy.get("[data-cy='productsList']").children().should("have.length", 5);
+
+    // Find the pagination buttons
+    cy.get("#previousPageButton").contains("Previous page");
+    cy.get("#nextPageButton").contains("Next page");
+  });
+
 });

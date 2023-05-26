@@ -20,10 +20,11 @@ export function CollectionHomeCard({ collection }: CollectionHomeCardProps) {
 
       <div className="bg-black bg-opacity-50 w-full h-full z-10 text-white flex p-4">
         <Link
+          data-cy={collection.title}
           href={`/collections/${collection.handle}`}
           className="flex items-center justify-between border border-gray-200 rounded bg-gray-50 px-4 py-2 text-gray-600 mt-auto ml-auto"
         >
-          <span>{collection.title}</span>
+          {collection.title}
           <ArrowRightIcon className="w-4 h-4 ml-2 mt-0.5" />
         </Link>
       </div>

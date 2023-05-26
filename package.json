@@ -9,9 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "test": "cypress run",
-    "cypress:open": "cypress open --config-file=cypress.config.ts",
-    "cypress:run": "cypress run --config-file=cypress.config.ts",
-    "cypress:record": "cypress run --record --key --config-file=cypress.config.ts"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:record": "cypress run --record --key"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.14",

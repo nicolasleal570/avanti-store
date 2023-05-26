@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+// @ts-ignore
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
@@ -74,12 +75,20 @@ export function NavbarSm({ collections }: NavbarSmProps) {
 
           <ul className="mt-auto space-y-4 border-t border-gray-300 pt-4">
             <li>
-              <Link data-cy="Shopping Cart" href="/work-in-progress" className="text-lg">
+              <Link
+                data-cy="Shopping Cart"
+                href="/work-in-progress"
+                className="text-lg"
+              >
                 Shopping Cart
               </Link>
             </li>
             <li>
-              <Link data-cy="Profile" href="/work-in-progress" className="text-lg">
+              <Link
+                data-cy="Profile"
+                href="/work-in-progress"
+                className="text-lg"
+              >
                 Profile
               </Link>
             </li>

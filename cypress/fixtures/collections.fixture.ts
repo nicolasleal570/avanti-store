@@ -1,7 +1,7 @@
 import { Collection } from "@/types/collections.type";
 
 /**
- * Mock data for testing purpose
+ * Mock collections for testing purpose
  */
 export const collectionsFixture: Collection[] = [
   {

@@ -1,12 +1,13 @@
 "use client";
 
 import { ChangeEventHandler, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useProducts } from "@/hooks/useProducts";
 import { ProductList } from "@/components/ProductList/ProductList.component";
 
 export default function Page() {
+  const router = useRouter();
   const queryParams = useSearchParams();
 
   const { isLoading, handleSearchProduct, products, pageInfo } = useProducts();
@@ -22,7 +23,12 @@ export default function Page() {
   };
 
   useEffect(() => {
-    handleSearchProduct(searchValue);
+    void handleSearchProduct(searchValue);
+
+    const params = new URLSearchParams();
+    params.set("query", searchValue);
+    router.replace(`/search?${params.toString()}`);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 

@@ -28,11 +28,11 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       <div className="flex items-center justify-between mt-5">
-        <div className="">
+        <div className="flex-1">
           <Link
             data-cy={productUrl}
             href={productUrl}
-            className="text-xl font-light"
+            className="block flex-1 text-xl font-light"
           >
             {product.title}
           </Link>

@@ -29,7 +29,7 @@ export function NavbarLg({ collections }: NavbarLgProps) {
           />
         </Link>
 
-        <ul className="flex items-center space-x-4 text-white">
+        <ul id="mainMenu" className="flex items-center space-x-4 text-white">
           <li className="px-3">
             <CollectionsMenu collections={collections} />
           </li>

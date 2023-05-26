@@ -7,5 +7,5 @@ export interface Collection {
   title: string;
   description: string;
   image: Image;
-  products: ProductsList;
+  products?: ProductsList;
 }

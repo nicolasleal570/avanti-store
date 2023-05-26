@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { navbarRoutes } from "@/constants/navbarRoutes.constants";
 import { Collection } from "@/types/collections.type";
-import { CollectionsMenu } from "./components/CollectionsMenu";
+import { CollectionsMenu } from "../CollectionsMenu/CollectionsMenu.component";
 
 export interface NavbarLgProps {
   collections: Collection[];
@@ -26,10 +26,11 @@ export function NavbarLg({ collections }: NavbarLgProps) {
             src="/avanti.svg"
             alt="Avanti Store"
             className="w-full"
+            data-cy="logo"
           />
         </Link>
 
-        <ul id="mainMenu" className="flex items-center space-x-4 text-white">
+        <ul data-cy="mainMenu" className="flex items-center space-x-4 text-white">
           <li className="px-3">
             <CollectionsMenu collections={collections} />
           </li>
@@ -42,15 +43,15 @@ export function NavbarLg({ collections }: NavbarLgProps) {
         </ul>
 
         <div className="grid grid-cols-3 gap-2">
-          <Link id="searchLink" href="/search" className="p-1 rounded">
+          <Link data-cy="searchLink" href="/search" className="p-1 rounded">
             <MagnifyingGlassIcon className="w-5 h-5 text-white" />
           </Link>
 
-          <button id="bagLink" type="button" className="p-1 rounded">
+          <button data-cy="bagLink" type="button" className="p-1 rounded">
             <ShoppingBagIcon className="w-5 h-5 text-white" />
           </button>
 
-          <button id="userLink" type="button" className="p-1 rounded">
+          <button data-cy="userLink" type="button" className="p-1 rounded">
             <UserIcon className="w-5 h-5 text-white" />
           </button>
         </div>

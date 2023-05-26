@@ -12,14 +12,19 @@ export function CollectionsMenu({ collections }: CollectionsMenuProps) {
   return (
     <Popover as="div" className="relative inline-block text-left">
       <div>
-        <Popover.Button className="inline-flex w-full justify-center items-center text-lg outline-none">
+        <Popover.Button
+          data-cy="collectionsItem"
+          className="inline-flex w-full justify-center items-center text-lg outline-none"
+        >
           Collections
           <ChevronDownIcon
+          data-cy="chevronIcon"
             className="ml-2 -mr-1 h-5 w-5 text-inherit"
             aria-hidden="true"
           />
         </Popover.Button>
       </div>
+      
       <Transition
         as={Fragment}
         enter="transition ease-out duration-100"
@@ -34,6 +39,7 @@ export function CollectionsMenu({ collections }: CollectionsMenuProps) {
             {collections.map((collection) => (
               <Popover.Button
                 key={collection.id}
+                data-cy={collection.id}
                 as={Link}
                 href={`/collections/${collection.handle}`}
                 className="block text-gray-800"

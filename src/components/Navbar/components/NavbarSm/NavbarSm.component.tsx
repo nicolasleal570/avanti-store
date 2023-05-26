@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Bars3Icon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { navbarRoutes } from "@/constants/navbarRoutes.constants";
 import { Collection } from "@/types/collections.type";
-import { CollectionsMenu } from "./components/CollectionsMenu";
+import { CollectionsMenu } from "../CollectionsMenu/CollectionsMenu.component";
 
 export interface NavbarSmProps {
   collections: Collection[];
@@ -36,15 +36,21 @@ export function NavbarSm({ collections }: NavbarSmProps) {
             src="/avanti.svg"
             alt="Avanti Store"
             className="w-full"
+            data-cy="logo"
           />
         </div>
 
         <div className="flex items-center space-x-4 mr-4">
-          <Link href="/search" className="p-1 rounded">
+          <Link href="/search" className="p-1 rounded" data-cy="searchLink">
             <MagnifyingGlassIcon className="w-5 h-5 text-white" />
           </Link>
 
-          <button type="button" className="" onClick={handleToggleMenu}>
+          <button
+            data-cy="hamburgerIcon"
+            type="button"
+            className=""
+            onClick={handleToggleMenu}
+          >
             <Bars3Icon className="w-7 h-7 text-white" />
           </button>
         </div>
@@ -59,7 +65,7 @@ export function NavbarSm({ collections }: NavbarSmProps) {
 
             {navbarRoutes.map((link) => (
               <li key={link.id}>
-                <Link className="text-lg" href={link.href}>
+                <Link data-cy={link.label} className="text-lg" href={link.href}>
                   {link.label}
                 </Link>
               </li>
@@ -68,12 +74,12 @@ export function NavbarSm({ collections }: NavbarSmProps) {
 
           <ul className="mt-auto space-y-4 border-t border-gray-300 pt-4">
             <li>
-              <Link href="/work-in-progress" className="text-lg">
+              <Link data-cy="Shopping Cart" href="/work-in-progress" className="text-lg">
                 Shopping Cart
               </Link>
             </li>
             <li>
-              <Link href="/work-in-progress" className="text-lg">
+              <Link data-cy="Profile" href="/work-in-progress" className="text-lg">
                 Profile
               </Link>
             </li>

@@ -1,7 +1,7 @@
 "use client";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { NavbarLg, NavbarLgProps } from "./NavbarLg.component";
-import { NavbarSm, NavbarSmProps } from "./NavbarSm.component";
+import { NavbarLg, NavbarLgProps } from "./components/NavbarLg/NavbarLg.component";
+import { NavbarSm, NavbarSmProps } from "./components/NavbarSm/NavbarSm.component";
 
 interface NavbarProps extends NavbarSmProps, NavbarLgProps {}
 

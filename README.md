@@ -22,6 +22,7 @@ I used [Cypress](https://www.cypress.io/) to implement some unit and end-to-end 
 - Search page
 - Landing page
 - Navbar component
+- Collections menu components
 
 ## Start project in development mode
 
